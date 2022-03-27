@@ -59,6 +59,8 @@ export const USDC: { [chainId in SupportedChainId]: Token } = {
   [SupportedChainId.RINKEBY]: USDC_RINKEBY,
   [SupportedChainId.KOVAN]: USDC_KOVAN,
   [SupportedChainId.ROPSTEN]: USDC_ROPSTEN,
+  //TODO: Add godwoken USDC
+  [SupportedChainId.GODWOKEN_TESTNET]: USDC_ROPSTEN,
 }
 export const DAI_POLYGON = new Token(
   SupportedChainId.POLYGON,
@@ -252,6 +254,14 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } =
     18,
     'WMATIC',
     'Wrapped MATIC'
+  ),
+  //TODO: add WCKB address
+  [SupportedChainId.GODWOKEN_TESTNET]: new Token(
+    SupportedChainId.GODWOKEN_TESTNET,
+    '0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889',
+    8,
+    'WCKB',
+    'Wrapped CKB'
   ),
 }
 

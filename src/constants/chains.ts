@@ -16,6 +16,7 @@ export enum SupportedChainId {
 
   POLYGON = 137,
   POLYGON_MUMBAI = 80001,
+  GODWOKEN_TESTNET = 868455272153094,
 }
 
 export const CHAIN_IDS_TO_NAMES = {
@@ -30,6 +31,7 @@ export const CHAIN_IDS_TO_NAMES = {
   [SupportedChainId.ARBITRUM_RINKEBY]: 'arbitrum_rinkeby',
   [SupportedChainId.OPTIMISM]: 'optimism',
   [SupportedChainId.OPTIMISTIC_KOVAN]: 'optimistic_kovan',
+  [SupportedChainId.GODWOKEN_TESTNET]: 'godwoken_testnet_v1',
 }
 
 /**
@@ -70,6 +72,7 @@ export const L2_CHAIN_IDS = [
   SupportedChainId.ARBITRUM_RINKEBY,
   SupportedChainId.OPTIMISM,
   SupportedChainId.OPTIMISTIC_KOVAN,
+  SupportedChainId.GODWOKEN_TESTNET,
 ] as const
 
 export type SupportedL2ChainId = typeof L2_CHAIN_IDS[number]
