@@ -11,6 +11,8 @@ export const OPTIMISM_LIST = 'https://static.optimism.io/optimism.tokenlist.json
 const ROLL_LIST = 'https://app.tryroll.com/tokens.json'
 const SET_LIST = 'https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/set.tokenlist.json'
 const WRAPPED_LIST = 'wrapped.tokensoft.eth'
+export const GODWOKEN_LIST =
+  'https://gist.githubusercontent.com/chaitanyasjoshi/6b75dcc9c9f4e5dc847b637a2643665b/raw/54c7cb5c9450dbc4c940d24129f4dbe889ac0115/godwoken-testnet-v1-tokenlist.json'
 
 export const UNSUPPORTED_LIST_URLS: string[] = [BA_LIST]
 
@@ -18,6 +20,7 @@ export const UNSUPPORTED_LIST_URLS: string[] = [BA_LIST]
 // lower index == higher priority for token import
 const DEFAULT_LIST_OF_LISTS_TO_DISPLAY: string[] = [
   UNI_LIST,
+  GODWOKEN_LIST,
   COMPOUND_LIST,
   AAVE_LIST,
   CMC_ALL_LIST,
@@ -37,4 +40,4 @@ export const DEFAULT_LIST_OF_LISTS: string[] = [
 ]
 
 // default lists to be 'active' aka searched across
-export const DEFAULT_ACTIVE_LIST_URLS: string[] = [UNI_LIST, GEMINI_LIST]
+export const DEFAULT_ACTIVE_LIST_URLS: string[] = [UNI_LIST, GODWOKEN_LIST, GEMINI_LIST]

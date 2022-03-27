@@ -5,6 +5,7 @@ import { useMemo } from 'react'
 import { WrappedTokenInfo } from 'state/lists/wrappedTokenInfo'
 
 import EthereumLogo from '../../assets/images/ethereum-logo.png'
+import CkbLogo from '../../assets/svg/ckb-logo.svg'
 import MaticLogo from '../../assets/svg/matic-token-icon.svg'
 
 type Network = 'ethereum' | 'arbitrum' | 'optimism'
@@ -27,6 +28,8 @@ function getNativeLogoURI(chainId: SupportedChainId = SupportedChainId.MAINNET):
     case SupportedChainId.POLYGON_MUMBAI:
     case SupportedChainId.POLYGON:
       return MaticLogo
+    case SupportedChainId.GODWOKEN_TESTNET:
+      return CkbLogo
     default:
       return EthereumLogo
   }

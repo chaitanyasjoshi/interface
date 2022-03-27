@@ -6,7 +6,7 @@ import polygonMaticLogo from 'assets/svg/polygon-matic-logo.svg'
 import ms from 'ms.macro'
 
 import { SupportedChainId, SupportedL1ChainId, SupportedL2ChainId } from './chains'
-import { ARBITRUM_LIST, OPTIMISM_LIST } from './lists'
+import { ARBITRUM_LIST, GODWOKEN_LIST, OPTIMISM_LIST } from './lists'
 
 export enum NetworkType {
   L1,
@@ -176,8 +176,7 @@ export const CHAIN_INFO: ChainInfoMap = {
     infoLink: 'https://info.uniswap.org/#/',
     label: 'Godwoken',
     logoUrl: ckbLogo,
-    //TODO: Change to godwoken list
-    defaultListUrl: ARBITRUM_LIST,
-    nativeCurrency: { name: 'Polyjuice CKB', symbol: 'pCKB', decimals: 8 },
+    defaultListUrl: GODWOKEN_LIST,
+    nativeCurrency: { name: 'Polyjuice CKB', symbol: 'CKB', decimals: 8 },
   },
 }

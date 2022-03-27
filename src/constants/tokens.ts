@@ -255,10 +255,9 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } =
     'WMATIC',
     'Wrapped MATIC'
   ),
-  //TODO: add WCKB address
   [SupportedChainId.GODWOKEN_TESTNET]: new Token(
     SupportedChainId.GODWOKEN_TESTNET,
-    '0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889',
+    '0x86efaff75201Ed513c2c9061f2913eec850af56C',
     8,
     'WCKB',
     'Wrapped CKB'
@@ -267,6 +266,10 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } =
 
 function isMatic(chainId: number): chainId is SupportedChainId.POLYGON | SupportedChainId.POLYGON_MUMBAI {
   return chainId === SupportedChainId.POLYGON_MUMBAI || chainId === SupportedChainId.POLYGON
+}
+
+function isGodwoken(chainId: number): chainId is SupportedChainId.GODWOKEN_TESTNET {
+  return chainId === SupportedChainId.GODWOKEN_TESTNET
 }
 
 class MaticNativeCurrency extends NativeCurrency {
@@ -284,6 +287,24 @@ class MaticNativeCurrency extends NativeCurrency {
   public constructor(chainId: number) {
     if (!isMatic(chainId)) throw new Error('Not matic')
     super(chainId, 18, 'MATIC', 'Polygon Matic')
+  }
+}
+
+class GodwokenNativeCurrency extends NativeCurrency {
+  equals(other: Currency): boolean {
+    return other.isNative && other.chainId === this.chainId
+  }
+
+  get wrapped(): Token {
+    if (!isGodwoken(this.chainId)) throw new Error('Not godwoken')
+    const wrapped = WRAPPED_NATIVE_CURRENCY[this.chainId]
+    invariant(wrapped instanceof Token)
+    return wrapped
+  }
+
+  public constructor(chainId: number) {
+    if (!isGodwoken(chainId)) throw new Error('Not godwoken')
+    super(chainId, 8, 'CKB', 'Polyjuice CKB')
   }
 }
 
@@ -307,6 +328,8 @@ export function nativeOnChain(chainId: number): NativeCurrency {
     cachedNativeCurrency[chainId] ??
     (cachedNativeCurrency[chainId] = isMatic(chainId)
       ? new MaticNativeCurrency(chainId)
+      : isGodwoken(chainId)
+      ? new GodwokenNativeCurrency(chainId)
       : ExtendedEther.onChain(chainId))
   )
 }
