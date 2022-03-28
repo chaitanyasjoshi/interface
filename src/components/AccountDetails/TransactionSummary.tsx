@@ -133,6 +133,7 @@ function DelegateSummary({ info: { delegatee } }: { info: DelegateTransactionInf
 
 function WrapSummary({ info: { chainId, currencyAmountRaw, unwrapped } }: { info: WrapTransactionInfo }) {
   const native = chainId ? nativeOnChain(chainId) : undefined
+  console.log(native)
 
   if (unwrapped) {
     return (
@@ -141,7 +142,7 @@ function WrapSummary({ info: { chainId, currencyAmountRaw, unwrapped } }: { info
         <FormattedCurrencyAmount
           rawAmount={currencyAmountRaw}
           symbol={native?.wrapped?.symbol ?? 'WETH'}
-          decimals={18}
+          decimals={native?.wrapped?.decimals ?? 18}
           sigFigs={6}
         />{' '}
         to {native?.symbol ?? 'ETH'}
@@ -154,7 +155,7 @@ function WrapSummary({ info: { chainId, currencyAmountRaw, unwrapped } }: { info
         <FormattedCurrencyAmount
           rawAmount={currencyAmountRaw}
           symbol={native?.symbol ?? 'ETH'}
-          decimals={18}
+          decimals={native?.decimals ?? 18}
           sigFigs={6}
         />{' '}
         to {native?.wrapped?.symbol ?? 'WETH'}
