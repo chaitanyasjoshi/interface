@@ -40,6 +40,8 @@ function getTokenLogoURI(address: string, chainId: SupportedChainId = SupportedC
   const networksWithUrls = [SupportedChainId.ARBITRUM_ONE, SupportedChainId.MAINNET, SupportedChainId.OPTIMISM]
   if (networksWithUrls.includes(chainId)) {
     return `https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/${networkName}/assets/${address}/logo.png`
+  } else if (chainId === SupportedChainId.GODWOKEN_TESTNET) {
+    return `https://raw.githubusercontent.com/chaitanyasjoshi/uni-fork-misc/main/assets/${address}/logo.png`
   }
 }
 
