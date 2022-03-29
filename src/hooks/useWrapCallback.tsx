@@ -1,5 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { Currency } from '@uniswap/sdk-core'
+import { SupportedChainId } from 'constants/chains'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useNativeCurrency from 'lib/hooks/useNativeCurrency'
 import tryParseCurrencyAmount from 'lib/utils/tryParseCurrencyAmount'
@@ -82,7 +83,11 @@ export default function useWrapCallback(
           sufficientBalance && inputAmount
             ? async () => {
                 try {
-                  const txReceipt = await wethContract.deposit({ value: `0x${inputAmount.quotient.toString(16)}` })
+                  const options = chainId === SupportedChainId.GODWOKEN_TESTNET ? { gasLimit: 1000000 } : {}
+                  const txReceipt = await wethContract.deposit({
+                    ...options,
+                    value: `0x${inputAmount.quotient.toString(16)}`,
+                  })
                   addTransaction(txReceipt, {
                     type: TransactionType.WRAP,
                     unwrapped: false,
@@ -107,7 +112,8 @@ export default function useWrapCallback(
           sufficientBalance && inputAmount
             ? async () => {
                 try {
-                  const txReceipt = await wethContract.withdraw(`0x${inputAmount.quotient.toString(16)}`)
+                  const options = chainId === SupportedChainId.GODWOKEN_TESTNET ? { gasLimit: 1000000 } : {}
+                  const txReceipt = await wethContract.withdraw(`0x${inputAmount.quotient.toString(16)}`, options)
                   addTransaction(txReceipt, {
                     type: TransactionType.WRAP,
                     unwrapped: true,

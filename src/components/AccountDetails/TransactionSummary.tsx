@@ -133,7 +133,6 @@ function DelegateSummary({ info: { delegatee } }: { info: DelegateTransactionInf
 
 function WrapSummary({ info: { chainId, currencyAmountRaw, unwrapped } }: { info: WrapTransactionInfo }) {
   const native = chainId ? nativeOnChain(chainId) : undefined
-  console.log(native)
 
   if (unwrapped) {
     return (

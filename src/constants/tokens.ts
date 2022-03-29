@@ -257,7 +257,7 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } =
   ),
   [SupportedChainId.GODWOKEN_TESTNET]: new Token(
     SupportedChainId.GODWOKEN_TESTNET,
-    '0x86efaff75201Ed513c2c9061f2913eec850af56C',
+    '0xbb9a94A220f3e41CE7cBf198d7555E727038de80',
     8,
     'WCKB',
     'Wrapped CKB'

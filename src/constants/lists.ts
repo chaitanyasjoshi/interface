@@ -12,7 +12,7 @@ const ROLL_LIST = 'https://app.tryroll.com/tokens.json'
 const SET_LIST = 'https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/set.tokenlist.json'
 const WRAPPED_LIST = 'wrapped.tokensoft.eth'
 export const GODWOKEN_LIST =
-  'https://gist.githubusercontent.com/chaitanyasjoshi/6b75dcc9c9f4e5dc847b637a2643665b/raw/2c14828815426b5329cf192d35ad51a7110742a0/godwoken-testnet-v1-tokenlist.json'
+  'https://gist.githubusercontent.com/chaitanyasjoshi/6b75dcc9c9f4e5dc847b637a2643665b/raw/8103a83c48b3de8f65a7cd0498384984ceb0de82/godwoken-testnet-v1-tokenlist.json'
 
 export const UNSUPPORTED_LIST_URLS: string[] = [BA_LIST]
 

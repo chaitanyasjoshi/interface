@@ -1,6 +1,7 @@
 import { MaxUint256 } from '@ethersproject/constants'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, CurrencyAmount, Token } from '@uniswap/sdk-core'
+import { SupportedChainId } from 'constants/chains'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTokenContract } from 'hooks/useContract'
 import { useTokenAllowance } from 'hooks/useTokenAllowance'
@@ -84,9 +85,11 @@ export function useApproval(
       return tokenContract.estimateGas.approve(spender, amountToApprove.quotient.toString())
     })
 
+    const gasLimit = chainId === SupportedChainId.GODWOKEN_TESTNET ? 1000000 : calculateGasMargin(estimatedGas)
+
     return tokenContract
       .approve(spender, useExact ? amountToApprove.quotient.toString() : MaxUint256, {
-        gasLimit: calculateGasMargin(estimatedGas),
+        gasLimit,
       })
       .then((response) => ({
         response,

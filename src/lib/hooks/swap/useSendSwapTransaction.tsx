@@ -6,6 +6,7 @@ import { Trade } from '@uniswap/router-sdk'
 import { Currency, TradeType } from '@uniswap/sdk-core'
 import { Trade as V2Trade } from '@uniswap/v2-sdk'
 import { Trade as V3Trade } from '@uniswap/v3-sdk'
+import { SupportedChainId } from 'constants/chains'
 import { useMemo } from 'react'
 import { calculateGasMargin } from 'utils/calculateGasMargin'
 import isZero from 'utils/isZero'
@@ -117,7 +118,11 @@ export default function useSendSwapTransaction(
             to: address,
             data: calldata,
             // let the wallet try if we can't estimate the gas
-            ...('gasEstimate' in bestCallOption ? { gasLimit: calculateGasMargin(bestCallOption.gasEstimate) } : {}),
+            ...(chainId === SupportedChainId.GODWOKEN_TESTNET
+              ? { gasLimit: 1000000 }
+              : 'gasEstimate' in bestCallOption
+              ? { gasLimit: calculateGasMargin(bestCallOption.gasEstimate) }
+              : {}),
             ...(value && !isZero(value) ? { value } : {}),
           })
           .then((response) => {

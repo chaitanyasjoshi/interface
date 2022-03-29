@@ -21,14 +21,17 @@ export const MULTICALL_ADDRESS: AddressMap = {
 export const V2_FACTORY_ADDRESSES: AddressMap = constructSameAddressMap(V2_FACTORY_ADDRESS)
 
 export const V2_ROUTER_ADDRESS: AddressMap = constructSameAddressMap('0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D')
-export const V3_ROUTER_ADDRESS: AddressMap = constructSameAddressMap('0xE592427A0AEce92De3Edee1F18E0157C05861564', [
-  SupportedChainId.OPTIMISM,
-  SupportedChainId.OPTIMISTIC_KOVAN,
-  SupportedChainId.ARBITRUM_ONE,
-  SupportedChainId.ARBITRUM_RINKEBY,
-  SupportedChainId.POLYGON,
-  SupportedChainId.POLYGON_MUMBAI,
-])
+export const V3_ROUTER_ADDRESS: AddressMap = {
+  ...constructSameAddressMap('0xE592427A0AEce92De3Edee1F18E0157C05861564', [
+    SupportedChainId.OPTIMISM,
+    SupportedChainId.OPTIMISTIC_KOVAN,
+    SupportedChainId.ARBITRUM_ONE,
+    SupportedChainId.ARBITRUM_RINKEBY,
+    SupportedChainId.POLYGON,
+    SupportedChainId.POLYGON_MUMBAI,
+  ]),
+  [SupportedChainId.GODWOKEN_TESTNET]: '0x47A3988bCB70b7498C85cCbd9049B2e025c6eeDF',
+}
 export const SWAP_ROUTER_ADDRESSES: AddressMap = {
   ...constructSameAddressMap('0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45', [
     SupportedChainId.OPTIMISM,
@@ -38,7 +41,7 @@ export const SWAP_ROUTER_ADDRESSES: AddressMap = {
     SupportedChainId.POLYGON,
     SupportedChainId.POLYGON_MUMBAI,
   ]),
-  [SupportedChainId.GODWOKEN_TESTNET]: '0x0197933AC6A1d7d5b21CBeE15a1b5f05AD1Dd3D8',
+  [SupportedChainId.GODWOKEN_TESTNET]: '0x47A3988bCB70b7498C85cCbd9049B2e025c6eeDF',
 }
 
 /**
@@ -87,17 +90,17 @@ export const QUOTER_ADDRESSES: AddressMap = constructSameAddressMap('0xb27308f9F
   SupportedChainId.POLYGON_MUMBAI,
   SupportedChainId.POLYGON,
 ])
-export const NONFUNGIBLE_POSITION_MANAGER_ADDRESSES: AddressMap = constructSameAddressMap(
-  '0xC36442b4a4522E871399CD717aBDD847Ab11FE88',
-  [
+export const NONFUNGIBLE_POSITION_MANAGER_ADDRESSES: AddressMap = {
+  ...constructSameAddressMap('0xC36442b4a4522E871399CD717aBDD847Ab11FE88', [
     SupportedChainId.OPTIMISM,
     SupportedChainId.OPTIMISTIC_KOVAN,
     SupportedChainId.ARBITRUM_ONE,
     SupportedChainId.ARBITRUM_RINKEBY,
     SupportedChainId.POLYGON_MUMBAI,
     SupportedChainId.POLYGON,
-  ]
-)
+  ]),
+  [SupportedChainId.GODWOKEN_TESTNET]: '0xfB92584506B7fB3736fb8b8F5ea38963D07aC262',
+}
 export const ENS_REGISTRAR_ADDRESSES: AddressMap = {
   [SupportedChainId.MAINNET]: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
   [SupportedChainId.ROPSTEN]: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
