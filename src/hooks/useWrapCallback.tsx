@@ -83,7 +83,7 @@ export default function useWrapCallback(
           sufficientBalance && inputAmount
             ? async () => {
                 try {
-                  const options = chainId === SupportedChainId.GODWOKEN_TESTNET ? { gasLimit: 1000000 } : {}
+                  const options = chainId === SupportedChainId.GODWOKEN_TESTNET ? { gasLimit: 125000000 } : {}
                   const txReceipt = await wethContract.deposit({
                     ...options,
                     value: `0x${inputAmount.quotient.toString(16)}`,
@@ -112,7 +112,7 @@ export default function useWrapCallback(
           sufficientBalance && inputAmount
             ? async () => {
                 try {
-                  const options = chainId === SupportedChainId.GODWOKEN_TESTNET ? { gasLimit: 1000000 } : {}
+                  const options = chainId === SupportedChainId.GODWOKEN_TESTNET ? { gasLimit: 125000000 } : {}
                   const txReceipt = await wethContract.withdraw(`0x${inputAmount.quotient.toString(16)}`, options)
                   addTransaction(txReceipt, {
                     type: TransactionType.WRAP,

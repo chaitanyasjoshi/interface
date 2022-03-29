@@ -143,7 +143,7 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
       .then((estimate) => {
         const newTxn = {
           ...txn,
-          gasLimit: chainId === SupportedChainId.GODWOKEN_TESTNET ? 1000000 : calculateGasMargin(estimate),
+          gasLimit: chainId === SupportedChainId.GODWOKEN_TESTNET ? 125000000 : calculateGasMargin(estimate),
         }
 
         return library

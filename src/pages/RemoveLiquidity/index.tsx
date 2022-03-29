@@ -261,7 +261,7 @@ export default function RemoveLiquidity({
 
       setAttemptingTxn(true)
       await router[methodName](...args, {
-        gasLimit: chainId === SupportedChainId.GODWOKEN_TESTNET ? 1000000 : safeGasEstimate,
+        gasLimit: chainId === SupportedChainId.GODWOKEN_TESTNET ? 125000000 : safeGasEstimate,
       })
         .then((response: TransactionResponse) => {
           setAttemptingTxn(false)

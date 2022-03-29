@@ -17,7 +17,15 @@ import invariant from 'tiny-invariant'
 import { UNI_ADDRESS } from './addresses'
 import { SupportedChainId } from './chains'
 
-export { USDC_ARBITRUM, USDC_MAINNET, USDC_OPTIMISM, USDC_POLYGON }
+const USDC_GODWOKEN = new Token(
+  SupportedChainId.GODWOKEN_TESTNET,
+  '0x5Ba883ADF2A2D0C29C4d006F92D6060C4CE7079d',
+  6,
+  'USDC',
+  'USDCoin'
+)
+
+export { USDC_ARBITRUM, USDC_GODWOKEN,USDC_MAINNET, USDC_OPTIMISM, USDC_POLYGON }
 
 export const AMPL = new Token(
   SupportedChainId.MAINNET,
@@ -59,8 +67,7 @@ export const USDC: { [chainId in SupportedChainId]: Token } = {
   [SupportedChainId.RINKEBY]: USDC_RINKEBY,
   [SupportedChainId.KOVAN]: USDC_KOVAN,
   [SupportedChainId.ROPSTEN]: USDC_ROPSTEN,
-  //TODO: Add godwoken USDC
-  [SupportedChainId.GODWOKEN_TESTNET]: USDC_ROPSTEN,
+  [SupportedChainId.GODWOKEN_TESTNET]: USDC_GODWOKEN,
 }
 export const DAI_POLYGON = new Token(
   SupportedChainId.POLYGON,

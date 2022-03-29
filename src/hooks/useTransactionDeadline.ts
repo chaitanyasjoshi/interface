@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber'
-import { L2_CHAIN_IDS } from 'constants/chains'
+import { L2_CHAIN_IDS, SupportedChainId } from 'constants/chains'
 import { L2_DEADLINE_FROM_NOW } from 'constants/misc'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useMemo } from 'react'
@@ -13,6 +13,7 @@ export default function useTransactionDeadline(): BigNumber | undefined {
   const ttl = useAppSelector((state) => state.user.userDeadline)
   const blockTimestamp = useCurrentBlockTimestamp()
   return useMemo(() => {
+    if (blockTimestamp && chainId && chainId === SupportedChainId.GODWOKEN_TESTNET) return blockTimestamp.add(60 * 15)
     if (blockTimestamp && chainId && L2_CHAIN_IDS.includes(chainId)) return blockTimestamp.add(L2_DEADLINE_FROM_NOW)
     if (blockTimestamp && ttl) return blockTimestamp.add(ttl)
     return undefined

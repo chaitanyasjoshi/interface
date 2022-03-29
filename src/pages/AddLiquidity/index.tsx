@@ -267,8 +267,10 @@ export default function AddLiquidity({
         .then((estimate) => {
           const newTxn = {
             ...txn,
-            gasLimit: chainId === SupportedChainId.GODWOKEN_TESTNET ? 1000000 : calculateGasMargin(estimate),
+            gasLimit: chainId === SupportedChainId.GODWOKEN_TESTNET ? 125000000 : calculateGasMargin(estimate),
           }
+
+          console.log(newTxn)
 
           return library
             .getSigner()

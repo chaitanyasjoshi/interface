@@ -119,7 +119,7 @@ export default function useSendSwapTransaction(
             data: calldata,
             // let the wallet try if we can't estimate the gas
             ...(chainId === SupportedChainId.GODWOKEN_TESTNET
-              ? { gasLimit: 1000000 }
+              ? { gasLimit: 125000000 }
               : 'gasEstimate' in bestCallOption
               ? { gasLimit: calculateGasMargin(bestCallOption.gasEstimate) }
               : {}),

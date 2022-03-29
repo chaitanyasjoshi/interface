@@ -30,7 +30,7 @@ export const V3_ROUTER_ADDRESS: AddressMap = {
     SupportedChainId.POLYGON,
     SupportedChainId.POLYGON_MUMBAI,
   ]),
-  [SupportedChainId.GODWOKEN_TESTNET]: '0x47A3988bCB70b7498C85cCbd9049B2e025c6eeDF',
+  [SupportedChainId.GODWOKEN_TESTNET]: '0x43aeb2B2bC97D32D3e5418b4441225a164eB3726',
 }
 export const SWAP_ROUTER_ADDRESSES: AddressMap = {
   ...constructSameAddressMap('0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45', [
@@ -41,7 +41,7 @@ export const SWAP_ROUTER_ADDRESSES: AddressMap = {
     SupportedChainId.POLYGON,
     SupportedChainId.POLYGON_MUMBAI,
   ]),
-  [SupportedChainId.GODWOKEN_TESTNET]: '0x47A3988bCB70b7498C85cCbd9049B2e025c6eeDF',
+  [SupportedChainId.GODWOKEN_TESTNET]: '0x3672a53dbcD7777A38D14748EF24CE313e70f3a9',
 }
 
 /**
@@ -82,14 +82,17 @@ export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
   ]),
   [SupportedChainId.GODWOKEN_TESTNET]: '0x0B344563CEEa1AbeD9eCf07B0EF131ab43Bf2138',
 }
-export const QUOTER_ADDRESSES: AddressMap = constructSameAddressMap('0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6', [
-  SupportedChainId.OPTIMISM,
-  SupportedChainId.OPTIMISTIC_KOVAN,
-  SupportedChainId.ARBITRUM_ONE,
-  SupportedChainId.ARBITRUM_RINKEBY,
-  SupportedChainId.POLYGON_MUMBAI,
-  SupportedChainId.POLYGON,
-])
+export const QUOTER_ADDRESSES: AddressMap = {
+  ...constructSameAddressMap('0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6', [
+    SupportedChainId.OPTIMISM,
+    SupportedChainId.OPTIMISTIC_KOVAN,
+    SupportedChainId.ARBITRUM_ONE,
+    SupportedChainId.ARBITRUM_RINKEBY,
+    SupportedChainId.POLYGON_MUMBAI,
+    SupportedChainId.POLYGON,
+  ]),
+  [SupportedChainId.GODWOKEN_TESTNET]: '0x5C96109D6535e8AD49189950aeE836b84A1Bc10B',
+}
 export const NONFUNGIBLE_POSITION_MANAGER_ADDRESSES: AddressMap = {
   ...constructSameAddressMap('0xC36442b4a4522E871399CD717aBDD847Ab11FE88', [
     SupportedChainId.OPTIMISM,
@@ -99,7 +102,7 @@ export const NONFUNGIBLE_POSITION_MANAGER_ADDRESSES: AddressMap = {
     SupportedChainId.POLYGON_MUMBAI,
     SupportedChainId.POLYGON,
   ]),
-  [SupportedChainId.GODWOKEN_TESTNET]: '0xfB92584506B7fB3736fb8b8F5ea38963D07aC262',
+  [SupportedChainId.GODWOKEN_TESTNET]: '0xA89E21064F131312aBBF750eFF94b780bd7b8e30',
 }
 export const ENS_REGISTRAR_ADDRESSES: AddressMap = {
   [SupportedChainId.MAINNET]: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
@@ -111,14 +114,18 @@ export const SOCKS_CONTROLLER_ADDRESSES: AddressMap = {
   [SupportedChainId.MAINNET]: '0x65770b5283117639760beA3F867b69b3697a91dd',
 }
 
-export const V3_MIGRATOR_ADDRESSES: AddressMap = constructSameAddressMap('0xA5644E29708357803b5A882D272c41cC0dF92B34', [
-  SupportedChainId.ARBITRUM_ONE,
-  SupportedChainId.ARBITRUM_RINKEBY,
-  SupportedChainId.POLYGON_MUMBAI,
-  SupportedChainId.POLYGON,
-])
+export const V3_MIGRATOR_ADDRESSES: AddressMap = {
+  ...constructSameAddressMap('0xA5644E29708357803b5A882D272c41cC0dF92B34', [
+    SupportedChainId.ARBITRUM_ONE,
+    SupportedChainId.ARBITRUM_RINKEBY,
+    SupportedChainId.POLYGON_MUMBAI,
+    SupportedChainId.POLYGON,
+  ]),
+  [SupportedChainId.GODWOKEN_TESTNET]: '0x45415787f4C5612d60aD1ac982Ff1010f9c88Aa6',
+}
 
 export const TICK_LENS_ADDRESSES: AddressMap = {
   [SupportedChainId.ARBITRUM_ONE]: '0xbfd8137f7d1516D3ea5cA83523914859ec47F573',
   [SupportedChainId.ARBITRUM_RINKEBY]: '0xbfd8137f7d1516D3ea5cA83523914859ec47F573',
+  [SupportedChainId.GODWOKEN_TESTNET]: '0xACED02E1A5AC1DB647C70cdB803B9DBD3ddc8Edf',
 }

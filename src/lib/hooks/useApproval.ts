@@ -85,7 +85,7 @@ export function useApproval(
       return tokenContract.estimateGas.approve(spender, amountToApprove.quotient.toString())
     })
 
-    const gasLimit = chainId === SupportedChainId.GODWOKEN_TESTNET ? 1000000 : calculateGasMargin(estimatedGas)
+    const gasLimit = chainId === SupportedChainId.GODWOKEN_TESTNET ? 125000000 : calculateGasMargin(estimatedGas)
 
     return tokenContract
       .approve(spender, useExact ? amountToApprove.quotient.toString() : MaxUint256, {

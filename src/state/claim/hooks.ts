@@ -175,7 +175,7 @@ export function useClaimCallback(account: string | null | undefined): {
       return distributorContract
         .claim(...args, {
           value: null,
-          gasLimit: chainId === SupportedChainId.GODWOKEN_TESTNET ? 1000000 : calculateGasMargin(estimatedGasLimit),
+          gasLimit: chainId === SupportedChainId.GODWOKEN_TESTNET ? 125000000 : calculateGasMargin(estimatedGasLimit),
         })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
