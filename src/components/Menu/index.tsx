@@ -271,12 +271,14 @@ export default function Menu() {
               default:
                 return (
                   <MenuFlyout>
-                    <ToggleMenuItem onClick={() => claimMockTokens()}>
-                      <div>
-                        <Trans>Faucet</Trans>
-                      </div>
-                      <Gift opacity={0.6} size={16} />
-                    </ToggleMenuItem>
+                    {chainId === SupportedChainId.GODWOKEN_TESTNET && (
+                      <ToggleMenuItem onClick={() => claimMockTokens()}>
+                        <div>
+                          <Trans>Faucet</Trans>
+                        </div>
+                        <Gift opacity={0.6} size={16} />
+                      </ToggleMenuItem>
+                    )}
                     <MenuItem href="https://uniswap.org/">
                       <div>
                         <Trans>About</Trans>
