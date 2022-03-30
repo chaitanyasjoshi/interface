@@ -10,6 +10,7 @@ import {
   AddLiquidityV2PoolTransactionInfo,
   AddLiquidityV3PoolTransactionInfo,
   ApproveTransactionInfo,
+  ClaimFaucetTransactionInfo,
   ClaimTransactionInfo,
   CollectFeesTransactionInfo,
   CreateV3PoolTransactionInfo,
@@ -295,6 +296,11 @@ function SwapSummary({ info }: { info: ExactInputSwapTransactionInfo | ExactOutp
   }
 }
 
+function ClaimFaucetSummary({ info: { recipient } }: { info: ClaimFaucetTransactionInfo }) {
+  const { ENSName } = useENSName()
+  return <Trans>Claim faucet for {ENSName ?? recipient}</Trans>
+}
+
 export function TransactionSummary({ info }: { info: TransactionInfo }) {
   switch (info.type) {
     case TransactionType.ADD_LIQUIDITY_V3_POOL:
@@ -341,5 +347,8 @@ export function TransactionSummary({ info }: { info: TransactionInfo }) {
 
     case TransactionType.SUBMIT_PROPOSAL:
       return <SubmitProposalTransactionSummary info={info} />
+
+    case TransactionType.CLAIM_FAUCET:
+      return <ClaimFaucetSummary info={info} />
   }
 }

@@ -14,6 +14,7 @@ import ERC20_ABI from 'abis/erc20.json'
 import ERC20_BYTES32_ABI from 'abis/erc20_bytes32.json'
 import ERC721_ABI from 'abis/erc721.json'
 import ERC1155_ABI from 'abis/erc1155.json'
+import FAUCET_ABI from 'abis/faucet.json'
 import { ArgentWalletDetector, EnsPublicResolver, EnsRegistrar, Erc20, Erc721, Erc1155, Weth } from 'abis/types'
 import WETH_ABI from 'abis/weth.json'
 import {
@@ -138,4 +139,8 @@ export function useTickLens(): TickLens | null {
   const { chainId } = useActiveWeb3React()
   const address = chainId ? TICK_LENS_ADDRESSES[chainId] : undefined
   return useContract(address, TickLensABI) as TickLens | null
+}
+
+export function useFaucet() {
+  return useContract('0x4271365E80756D10c395389d1b36c0DE50F7d8a9', FAUCET_ABI, true)
 }

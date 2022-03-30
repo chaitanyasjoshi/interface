@@ -1,10 +1,12 @@
+import { TransactionResponse } from '@ethersproject/abstract-provider'
 // eslint-disable-next-line no-restricted-imports
 import { t, Trans } from '@lingui/macro'
 import { PrivacyPolicyModal } from 'components/PrivacyPolicy'
-import { L2_CHAIN_IDS } from 'constants/chains'
+import { L2_CHAIN_IDS, SupportedChainId } from 'constants/chains'
 import { LOCALE_LABEL, SUPPORTED_LOCALES, SupportedLocale } from 'constants/locales'
 import { useActiveLocale } from 'hooks/useActiveLocale'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useFaucet } from 'hooks/useContract'
 import { useLocationLinkProps } from 'hooks/useLocationLinkProps'
 import React, { useEffect, useRef, useState } from 'react'
 import {
@@ -13,6 +15,7 @@ import {
   ChevronLeft,
   Coffee,
   FileText,
+  Gift,
   Globe,
   HelpCircle,
   Info,
@@ -21,6 +24,8 @@ import {
   Sun,
 } from 'react-feather'
 import { Link } from 'react-router-dom'
+import { TransactionType } from 'state/transactions/actions'
+import { useTransactionAdder } from 'state/transactions/hooks'
 import { useDarkModeManager } from 'state/user/hooks'
 import styled, { css } from 'styled-components/macro'
 
@@ -207,7 +212,7 @@ function LanguageMenu({ close }: { close: () => void }) {
 }
 
 export default function Menu() {
-  const { account, chainId } = useActiveWeb3React()
+  const { account, chainId, library } = useActiveWeb3React()
 
   const node = useRef<HTMLDivElement>()
   const open = useModalOpen(ApplicationModal.MENU)
@@ -216,6 +221,8 @@ export default function Menu() {
   const togglePrivacyPolicy = useToggleModal(ApplicationModal.PRIVACY_POLICY)
   const openClaimModal = useToggleModal(ApplicationModal.ADDRESS_CLAIM)
   const showUNIClaimOption = Boolean(!!account && !!chainId && !L2_CHAIN_IDS.includes(chainId))
+  const faucet = useFaucet()
+  const addTransaction = useTransactionAdder()
 
   const [darkMode, toggleDarkMode] = useDarkModeManager()
 
@@ -224,6 +231,28 @@ export default function Menu() {
   useEffect(() => {
     setMenu('main')
   }, [open])
+
+  async function claimMockTokens() {
+    if (!(chainId === SupportedChainId.GODWOKEN_TESTNET) || !library || !account || !faucet) return
+
+    const method: (...args: any) => Promise<TransactionResponse> = faucet.claim
+
+    await method({
+      gasLimit: 125000000,
+    })
+      .then((response) => {
+        addTransaction(response, {
+          type: TransactionType.CLAIM_FAUCET,
+          recipient: account,
+        })
+      })
+      .catch((error) => {
+        // we only care if the error is something _other_ than the user rejected the tx
+        if (error?.code !== 4001) {
+          console.error(error)
+        }
+      })
+  }
 
   return (
     <>
@@ -242,6 +271,12 @@ export default function Menu() {
               default:
                 return (
                   <MenuFlyout>
+                    <ToggleMenuItem onClick={() => claimMockTokens()}>
+                      <div>
+                        <Trans>Faucet</Trans>
+                      </div>
+                      <Gift opacity={0.6} size={16} />
+                    </ToggleMenuItem>
                     <MenuItem href="https://uniswap.org/">
                       <div>
                         <Trans>About</Trans>

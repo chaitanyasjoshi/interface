@@ -34,6 +34,7 @@ export enum TransactionType {
   COLLECT_FEES = 12,
   REMOVE_LIQUIDITY_V3 = 13,
   SUBMIT_PROPOSAL = 14,
+  CLAIM_FAUCET = 15,
 }
 
 export interface BaseTransactionInfo {
@@ -153,6 +154,11 @@ export interface SubmitProposalTransactionInfo {
   type: TransactionType.SUBMIT_PROPOSAL
 }
 
+export interface ClaimFaucetTransactionInfo {
+  type: TransactionType.CLAIM_FAUCET
+  recipient: string
+}
+
 export type TransactionInfo =
   | ApproveTransactionInfo
   | ExactOutputSwapTransactionInfo
@@ -170,6 +176,7 @@ export type TransactionInfo =
   | CollectFeesTransactionInfo
   | RemoveLiquidityV3TransactionInfo
   | SubmitProposalTransactionInfo
+  | ClaimFaucetTransactionInfo
 
 export const addTransaction = createAction<{
   chainId: number
