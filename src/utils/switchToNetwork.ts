@@ -62,7 +62,10 @@ export async function switchToNetwork({ library, chainId }: SwitchNetworkArgumen
             chainId: formattedChainId,
             chainName: info.label,
             rpcUrls: getRpcUrls(chainId),
-            nativeCurrency: info.nativeCurrency,
+            nativeCurrency:
+              chainId === SupportedChainId.GODWOKEN_TESTNET
+                ? { name: info.nativeCurrency.name, symbol: info.nativeCurrency.symbol, decimals: 18 }
+                : info.nativeCurrency,
             blockExplorerUrls: [info.explorer],
           },
         ],
